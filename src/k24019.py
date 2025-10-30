@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 from my_module.K21999.lecture05_camera_image_capture import MyVideoCapture
 
-def lecture05_01():
+def  k24019():
 
     # カメラキャプチャ実行
     app = MyVideoCapture()
