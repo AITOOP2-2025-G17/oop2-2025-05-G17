@@ -2,6 +2,7 @@ import numpy as np
 import cv2
 from my_module.K21999.lecture05_camera_image_capture import MyVideoCapture
 
+
 def lecture05_01():
 
     # カメラキャプチャ実行
@@ -9,8 +10,10 @@ def lecture05_01():
     app.run()
 
     # 画像をローカル変数に保存
-    google_img : cv2.Mat = cv2.imread('images/google.png')
-    capture_img : cv2.Mat = cv2.imread('images/camera_capture.png') # 動作テスト用なので提出時にこの行を消すこと
+    google_img: cv2.Mat = cv2.imread("images/google.png")
+    capture_img: cv2.Mat = cv2.imread(
+        "images/camera_capture.png"
+    )  # 動作テスト用なので提出時にこの行を消すこと
     # capture_img : cv2.Mat = "implement me"
 
     g_hight, g_width, g_channel = google_img.shape
@@ -24,8 +27,7 @@ def lecture05_01():
             # もし白色(255,255,255)だったら置き換える
             if (b, g, r) == (255, 255, 255):
                 pass
-                #implement me
+                # implement me
 
     # 書き込み処理
     # implement me
-

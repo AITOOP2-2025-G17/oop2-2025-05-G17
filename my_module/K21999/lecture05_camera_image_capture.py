@@ -54,18 +54,30 @@ class MyVideoCapture:
             center = (int(cols / 2), int(rows / 2))
             img = cv2.circle(img, center, 30, (0, 0, 255), 3)
             img = cv2.circle(img, center, 60, (0, 0, 255), 3)
-            img = cv2.line(img, (center[0], center[1] - 80), (center[0], center[1] + 80), (0, 0, 255), 3)
-            img = cv2.line(img, (center[0] - 80, center[1]), (center[0] + 80, center[1]), (0, 0, 255), 3)
+            img = cv2.line(
+                img,
+                (center[0], center[1] - 80),
+                (center[0], center[1] + 80),
+                (0, 0, 255),
+                3,
+            )
+            img = cv2.line(
+                img,
+                (center[0] - 80, center[1]),
+                (center[0] + 80, center[1]),
+                (0, 0, 255),
+                3,
+            )
 
             # 左右反転（顔を撮るときは左右反転しておくとよい）
             img = cv2.flip(img, flipCode=1)
 
             # 加工した画像を表示
-            cv2.imshow('frame', img)
+            cv2.imshow("frame", img)
 
             # 次の画像を処理するまでに時間間隔（msec）を空ける
             # キーボードの'q'が押されたら終了
-            if cv2.waitKey(self.DELAY) & 0xFF == ord('q'):
+            if cv2.waitKey(self.DELAY) & 0xFF == ord("q"):
                 self.captured_img = frame
                 break
 
@@ -77,7 +89,7 @@ class MyVideoCapture:
         """
         return self.captured_img
 
-    def write_img(self, filepath: str = 'output_images/camera_capture.png') -> None:
+    def write_img(self, filepath: str = "output_images/camera_capture.png") -> None:
         """キャプチャされた画像をファイルに保存する。
 
         Args:
@@ -87,13 +99,15 @@ class MyVideoCapture:
             ValueError: キャプチャ画像が存在しない場合。
         """
         if self.captured_img is None:
-            raise ValueError("キャプチャ画像が存在しません。run()を実行してから保存してください。")
+            raise ValueError(
+                "キャプチャ画像が存在しません。run()を実行してから保存してください。"
+            )
 
         cv2.imwrite(filepath, self.captured_img)
 
     def __del__(self) -> None:
         """終了処理。カメラリソースを解放し、OpenCVウィンドウを閉じる。"""
-        if hasattr(self, 'cap') and self.cap.isOpened():
+        if hasattr(self, "cap") and self.cap.isOpened():
             self.cap.release()
         cv2.destroyAllWindows()
 
